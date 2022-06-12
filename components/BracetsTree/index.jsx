@@ -9,7 +9,7 @@ import generator from 'tournament-generator';
 
 
 
-const BracetsTree = ({ games }) => {
+const BracetsTree = ({ games, clicker }) => {
 
   const onWin = async (Tname) => {
     console.log('Win', Tname)
@@ -42,15 +42,11 @@ const BracetsTree = ({ games }) => {
             <th>
               HOMETEAM
             </th>
-            <th>
-              SCORE
-            </th>
+
             <th>
               FF
             </th>
-            <th>
-              SCORE
-            </th>
+
             <th>
               AWAYTEAM
             </th>
@@ -59,27 +55,26 @@ const BracetsTree = ({ games }) => {
         {games?.map(({ awayTeam, homeTeam, round }) => <tbody>
           <tr>
             <td>
-              <Button
-                onClick={() => onWin(homeTeam)}
-              >
-                {homeTeam}
-              </Button>
-            </td>
-            <td>
-              0
+              {
+                clicker !== false ? <Button
+                  onClick={() => onWin(homeTeam)}
+                >
+                  {homeTeam}
+                </Button> : homeTeam
+              }
+
             </td>
             <td>
               /\
             </td>
             <td>
-              0
-            </td>
-            <td>
-              <Button
-                onClick={() => onWin(awayTeam)}
-              >
-                {awayTeam}
-              </Button>
+              {
+                clicker !== false ? <Button
+                  onClick={() => onWin(awayTeam)}
+                >
+                  {awayTeam}
+                </Button> : awayTeam
+              }
             </td>
           </tr>
         </tbody>)}

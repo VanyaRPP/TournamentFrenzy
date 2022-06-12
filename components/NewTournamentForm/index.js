@@ -178,7 +178,7 @@ const NTForm = () => {
           </Button>
         </Form.Item>
       </Form>
-      <BracetsTree games={tournire?.games?.data} />
+      <BracetsTree games={tournire?.games?.data} clicker={false} />
       <Button
         onClick={() => {
           onSave(tournire)

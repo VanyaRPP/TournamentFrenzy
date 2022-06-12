@@ -1,40 +1,49 @@
+import { Table } from "reactstrap";
 import React from 'react'
 import { Chart } from 'react-charts';
 
 const Statistics = ({ stats }) => {
+
   const data = stats.data
-
-  const primaryAxis = React.useMemo(
-    () => ({
-      getValue: datum => datum.date,
-    }),
-    []
-  )
-
-  const secondaryAxes = React.useMemo(
-    () => [
-      {
-        getValue: datum => datum.stars,
-      },
-    ],
-    []
-  )
-
+  // console.log('tdty',
+  //   data.sort(
+  //     (a, b) => (a.score > b.score) ? 1 : -1
+  //   )
+  // )
   return (
     <div>
       <h1>
         Statistics
       </h1>
-      <Chart
-        options={{
-          data,
-          primaryAxis,
-          secondaryAxes,
-        }}
-      />
+      <Table responsive>
+        <thead>
+          <tr>
+            <th>
+              Name
+            </th>
+            <th>
+              Score
+            </th>
+          </tr>
+        </thead>
+        {
+          data.sort(
+            (a, b) => (a.score > b.score) ? 1 : -1
+          ).reverse().map(({ name, score }) =>
+            <tbody>
+              <tr>
+                <td>
+                  {name}
+                </td>
+                <td>
+                  {score}
+                </td>
+              </tr>
+            </tbody>
+          )
+        }
+      </Table>
     </div>
-
-
   )
 }
 
